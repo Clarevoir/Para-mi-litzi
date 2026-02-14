@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti 💚</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', Arial, sans-serif;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    #1a2332 0px,
+                    #1a2332 20px,
+                    #1e2738 20px,
+                    #1e2738 40px
+                ),
+                linear-gradient(to bottom, #1a2332, #2d4a3e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            margin: 0;
+        }
+
+        .container {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
+            border: 5px dashed #28a745;
+            border-radius: 25px;
+            padding: 35px 25px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.5),
+                0 0 0 10px rgba(40, 167, 69, 0.1),
+                inset 0 0 20px rgba(40, 167, 69, 0.05);
+            text-align: center;
+            position: relative;
+        }
+
+        .container::before {
+            content: '★';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 30px;
+            color: #ffd700;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .container::after {
+            content: '★';
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            font-size: 30px;
+            color: #ffd700;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .emoji-header {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite, rotate 3s infinite;
+            filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        @keyframes rotate {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .message-text {
+            color: #2c3e50;
+            font-size: 18px;
+            line-height: 1.7;
+            margin: 25px 0;
+            padding: 20px;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    #e8f5e9 0px,
+                    #e8f5e9 2px,
+                    #f0f8ff 2px,
+                    #f0f8ff 4px
+                );
+            border: 3px solid #28a745;
+            border-radius: 15px;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            box-shadow: 
+                inset 0 0 10px rgba(40, 167, 69, 0.2),
+                3px 3px 0 rgba(40, 167, 69, 0.3);
+        }
+
+        .message-text::before {
+            content: '💬';
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            font-size: 25px;
+        }
+
+        .btn-continue {
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    #28a745,
+                    #28a745 10px,
+                    #20c997 10px,
+                    #20c997 20px
+                );
+            color: white;
+            border: 4px solid #1e7e34;
+            padding: 15px 40px;
+            font-size: 19px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 
+                0 4px 15px rgba(40, 167, 69, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-continue:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.6);
+        }
+
+        .btn-continue:active {
+            transform: translateY(0);
+        }
+
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #btnSi {
+            background: 
+                radial-gradient(circle at 30% 30%, #32cd32, #28a745);
+            color: white;
+            border: 5px solid #ffd700;
+            padding: 20px 45px;
+            font-size: 22px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 
+                0 5px 20px rgba(40, 167, 69, 0.4),
+                0 0 20px rgba(255, 215, 0, 0.3),
+                inset 0 2px 0 rgba(255, 255, 255, 0.4);
+            transition: all 0.3s;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                box-shadow: 
+                    0 5px 20px rgba(40, 167, 69, 0.4),
+                    0 0 20px rgba(255, 215, 0, 0.3);
+            }
+            50% { 
+                box-shadow: 
+                    0 5px 25px rgba(40, 167, 69, 0.6),
+                    0 0 30px rgba(255, 215, 0, 0.5);
+            }
+        }
+
+        #btnSi:hover {
+            transform: scale(1.1) rotate(-2deg);
+            box-shadow: 
+                0 7px 25px rgba(40, 167, 69, 0.6),
+                0 0 30px rgba(255, 215, 0, 0.6);
+        }
+
+        #btnNo {
+            background: 
+                linear-gradient(135deg, #6c757d, #495057);
+            color: white;
+            border: 3px solid #343a40;
+            padding: 12px 35px;
+            font-size: 16px;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        #btnNo:hover {
+            background: linear-gradient(135deg, #5a6268, #3d4349);
+            transform: translateY(-2px);
+        }
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.6s;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .question-title {
+            color: #2c3e50;
+            font-size: 27px;
+            margin: 20px 0;
+            font-weight: bold;
+            text-shadow: 2px 2px 0 #ffd700;
+            border-bottom: 4px dotted #28a745;
+            padding-bottom: 15px;
+        }
+
+        .custom-image {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 6px solid #28a745;
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.3),
+                0 0 0 3px #ffd700,
+                0 0 0 6px #28a745;
+            transform: rotate(-1deg);
+        }
+
+        .final-image {
+            max-width: 100%;
+            max-height: 350px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border: 8px double #ffd700;
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.4),
+                0 0 0 4px #28a745,
+                0 0 30px rgba(255, 215, 0, 0.4);
+            transform: rotate(1deg);
+            animation: imageFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes imageFloat {
+            0%, 100% { transform: rotate(1deg) translateY(0); }
+            50% { transform: rotate(-1deg) translateY(-5px); }
+        }
+
+        .reject-text {
+            color: #dc3545;
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 20px;
+            animation: shake 0.5s, rainbow 2s infinite;
+            text-shadow: 
+                2px 2px 0 #ffd700,
+                4px 4px 0 #28a745,
+                6px 6px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            25% { transform: translateX(-10px) rotate(-5deg); }
+            75% { transform: translateX(10px) rotate(5deg); }
+        }
+
+        @keyframes rainbow {
+            0% { color: #dc3545; }
+            25% { color: #ffc107; }
+            50% { color: #28a745; }
+            75% { color: #17a2b8; }
+            100% { color: #dc3545; }
+        }
+
+        .audio-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: 
+                radial-gradient(circle at 30% 30%, #32cd32, #28a745);
+            color: white;
+            border: 4px solid #ffd700;
+            border-radius: 50%;
+            width: 65px;
+            height: 65px;
+            font-size: 26px;
+            cursor: pointer;
+            box-shadow: 
+                0 5px 20px rgba(40, 167, 69, 0.4),
+                0 0 20px rgba(255, 215, 0, 0.3);
+            z-index: 1000;
+            transition: all 0.3s;
+            animation: wiggle 3s infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .audio-control:hover {
+            transform: scale(1.15) rotate(15deg);
+        }
+
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 25px;
+            opacity: 0.7;
+            animation: floatHeart 6s infinite;
+            filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) scale(1.2);
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        .stars {
+            position: absolute;
+            font-size: 20px;
+            color: #ffd700;
+            animation: twinkle 1.5s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(1.3); }
+        }
+
+        .corner-decoration {
+            position: absolute;
+            font-size: 35px;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 480px) {
+            .message-text {
+                font-size: 16px;
+                padding: 15px;
+                min-height: 120px;
+            }
+
+            .question-title {
+                font-size: 22px;
+            }
+
+            .emoji-header {
+                font-size: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-container" id="heartsContainer"></div>
+
+    <div class="container screen active" id="screen1">
+        <span class="corner-decoration" style="top: 10px; left: 10px;">🌟</span>
+        <span class="corner-decoration" style="top: 10px; right: 10px;">🌟</span>
+        <span class="corner-decoration" style="bottom: 10px; left: 10px;">✨</span>
+        <span class="corner-decoration" style="bottom: 10px; right: 10px;">✨</span>
+        <div class="emoji-header">💌</div>
+        <div class="message-text" id="messageText1">
+            Sabes.. asi la mera neta camioneta patineta si es jodido hacer que un html no te de cancer en los ojos xd
+        </div>
+        <button class="btn-continue" onclick="nextScreen(2)">Continuar →</button>
+    </div>
+
+    <div class="container screen" id="screen2">
+        <span class="corner-decoration" style="top: 10px; left: 10px;">💫</span>
+        <span class="corner-decoration" style="top: 10px; right: 10px;">💫</span>
+        <span class="corner-decoration" style="bottom: 10px; left: 10px;">🌟</span>
+        <span class="corner-decoration" style="bottom: 10px; right: 10px;">🌟</span>
+        <div class="emoji-header">💭</div>
+        <div class="message-text" id="messageText2">
+            Nomas le pedi a la ia a que me enseñara a hacerlo algo maximalista pq me quedaba muy simple, y tu no te mereces nd simple (ademas de que designar el color exacto es un infierno porque debes saberte la combinacion numerica exacta del color, en fin soy bodrio oo soy bodrio)
+        </div>
+        <button class="btn-continue" onclick="nextScreen(3)">Continuar →</button>
+    </div>
+
+    <div class="container screen" id="screen3">
+        <span class="corner-decoration" style="top: 10px; left: 10px;">✨</span>
+        <span class="corner-decoration" style="top: 10px; right: 10px;">✨</span>
+        <span class="corner-decoration" style="bottom: 10px; left: 10px;">💫</span>
+        <span class="corner-decoration" style="bottom: 10px; right: 10px;">💫</span>
+        <div class="emoji-header">💚</div>
+        <div class="message-text" id="messageText3">
+            Queria hacer algo por ti porque te quiero, aunque es algo que te he dicho siempre pero me gusta decirtelo asi como me gusta tocarte aunque sea con un dedo, y es que me gusta ser tu garrapata, tu bodrio, tu pendejito, tu fro, tu tilino, y a mi me encanta saber que lo soy, y que estas conmigo a pesar de todo y me enseñais a ser mejor, tambien me encanta cuando me pegas, cuando me abrazas, cuando me tocas el poto, cuando me corriges por escribir como si no conociera que es un diccionario (aunque no tan a menudo pero igual xd), cuando a pesar de todo siempre te mantienes linda y radiante.. con un maquillaje tan precioso, con una vestimenta tan unica siempre y que aun sin todo eso sigues siendo tan bella, la plena que el unico defecto q tienes es que no estas cosida a mi cuerpo como siames.. tal vez todo lo que dije suena un poco fuera de seriedad pero la verdad es lo que siento, y hasta me faltan cosas que poner.. aunque sabes, la verdad no es un te quiero lo que siento, es un te amo
+        </div>
+        <button class="btn-continue" onclick="nextScreen(4)">Continuar →</button>
+    </div>
+
+    <div class="container screen" id="screen4">
+        <span class="corner-decoration" style="top: 10px; left: 10px;">🌟</span>
+        <span class="corner-decoration" style="top: 10px; right: 10px;">🌟</span>
+        <span class="corner-decoration" style="bottom: 10px; left: 10px;">💫</span>
+        <span class="corner-decoration" style="bottom: 10px; right: 10px;">💫</span>
+        <div class="emoji-header">✨</div>
+        <div class="message-text" id="messageText4">
+            Basta tu unico defecto es que te gusta un especialito... aunque eso no importa ya, me hiciste darme cuenta que las cosas no pueden ser simples y en especial con una persona tan especial para mi, y por eso quiero hacerte esta pregunta tan especial..
+        </div>
+        <button class="btn-continue" onclick="nextScreen(5)">Continuar →</button>
+    </div>
+
+    <div class="container screen" id="questionScreen">
+        <span class="corner-decoration" style="top: 10px; left: 10px;">💖</span>
+        <span class="corner-decoration" style="top: 10px; right: 10px;">💖</span>
+        <span class="corner-decoration" style="bottom: 10px; left: 10px;">💚</span>
+        <span class="corner-decoration" style="bottom: 10px; right: 10px;">💚</span>
+        <span class="stars" style="top: 50%; left: 5%;">⭐</span>
+        <span class="stars" style="top: 50%; right: 5%;">⭐</span>
+        <div class="emoji-header">💝</div>
+        <h1 class="question-title">¿Quieres ser mi San Valentín? di que si porfa 💚</h1>
+        
+        <img src="floreshamster.jpg" alt="Imagen especial" class="custom-image" id="customImage">
+        
+        <div class="buttons">
+            <button id="btnSi">¡Si pulgoso! 💚</button>
+            <button id="btnNo">No</button>
+        </div>
+        <div id="rejectText"></div>
+    </div>
+
+    <div class="container screen" id="responseYes">
+        <span class="corner-decoration" style="top: 10px; left: 10px;">🎊</span>
+        <span class="corner-decoration" style="top: 10px; right: 10px;">🎊</span>
+        <span class="corner-decoration" style="bottom: 10px; left: 10px;">🎉</span>
+        <span class="corner-decoration" style="bottom: 10px; right: 10px;">🎉</span>
+        <span class="stars" style="top: 20%; left: 10%;">⭐</span>
+        <span class="stars" style="top: 20%; right: 10%;">⭐</span>
+        <span class="stars" style="top: 70%; left: 15%;">✨</span>
+        <span class="stars" style="top: 70%; right: 15%;">✨</span>
+        <div class="emoji-header">🎉</div>
+        
+        <img src="graciashamster.jpg" alt="Celebración" class="final-image" id="finalImage">
+        
+        <h1 class="question-title">Sabía que dirías que si mujer, por eso me encantas</h1>
+        <div class="message-text">
+            Este es el mejor San Valentín q ha tenido mi culito en toda mi vida, todo gracias a ti viejo.. 💚
+        </div>
+    </div>
+
+    <audio id="backgroundMusic" loop>
+        <source src="Instrumental.mp3" type="audio/mpeg">
+    </audio>
+
+    <button class="audio-control" id="audioToggle">🔊</button>
+
+    <script>
+        const audio = document.getElementById('backgroundMusic');
+        const audioToggle = document.getElementById('audioToggle');
+        let isPlaying = false;
+
+        audioToggle.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                audioToggle.textContent = '🔇';
+            } else {
+                audio.play();
+                audioToggle.textContent = '🔊';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        window.addEventListener('load', () => {
+            audio.play().then(() => {
+                isPlaying = true;
+                audioToggle.textContent = '🔊';
+            }).catch(() => {
+                audioToggle.textContent = '🔇';
+            });
+
+            createHearts();
+        });
+
+        function nextScreen(screenNumber) {
+            const allScreens = document.querySelectorAll('.screen');
+            allScreens.forEach(screen => screen.classList.remove('active'));
+            
+            if (screenNumber === 5) {
+                document.getElementById('questionScreen').classList.add('active');
+            } else {
+                document.getElementById('screen' + screenNumber).classList.add('active');
+            }
+        }
+
+        document.getElementById('btnSi').addEventListener('click', () => {
+            const allScreens = document.querySelectorAll('.screen');
+            allScreens.forEach(screen => screen.classList.remove('active'));
+            document.getElementById('responseYes').classList.add('active');
+        });
+
+        document.getElementById('btnNo').addEventListener('click', () => {
+            const btn = document.getElementById('btnNo');
+            btn.style.display = 'none';
+            const rejectText = document.getElementById('rejectText');
+            rejectText.innerHTML = '<div class="reject-text">ñao ñao mujer</div>';
+        });
+
+        function createHearts() {
+            const container = document.getElementById('heartsContainer');
+            const hearts = ['💚', '💙', '💜', '💛', '❤️'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                container.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 7000);
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
